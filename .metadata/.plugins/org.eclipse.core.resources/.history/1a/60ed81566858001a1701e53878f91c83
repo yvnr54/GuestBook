@@ -1,0 +1,12 @@
+/**
+ * 
+ */
+package com.bt.guestbook.model;
+
+/**
+ * @author Venkat
+ *
+ */
+public class BtUser {
+
+}

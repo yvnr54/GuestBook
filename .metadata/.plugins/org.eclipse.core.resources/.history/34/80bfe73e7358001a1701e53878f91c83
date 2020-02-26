@@ -1,0 +1,12 @@
+/**
+ * 
+ */
+package com.bt.guestbook.security;
+
+/**
+ * @author Venkat
+ *
+ */
+public class GuestBookSecurityConfig {
+
+}

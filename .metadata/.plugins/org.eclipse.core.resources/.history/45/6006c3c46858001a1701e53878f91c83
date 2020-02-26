@@ -1,0 +1,32 @@
+/**
+ * 
+ */
+package com.bt.guestbook.model;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+/**
+ * @author Venkat
+ *
+ */
+
+@Entity
+@Table(name = "BT_USERS")
+public class BtUser {
+
+	@Id
+	@GeneratedValue(generator = "BT_USER_SEQ",strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(name = "BT_USER_SEQ",sequenceName = "BT_USER_SEQ",allocationSize = 1)
+	private Long id;
+	private String name;
+	private String userName;
+	private String password;
+	private Boolean status;
+	
+	
+}

@@ -1,0 +1,14 @@
+/**
+ * 
+ */
+package com.bt.guestbook.security;
+
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+
+/**
+ * @author Venkat
+ *
+ */
+public class GuestBookSecurityConfig {
+
+}

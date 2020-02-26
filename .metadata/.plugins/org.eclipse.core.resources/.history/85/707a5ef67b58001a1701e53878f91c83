@@ -1,0 +1,72 @@
+/**
+ * 
+ */
+package com.bt.guestbook.controller;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+
+/**
+ * @author Venkat
+ *
+ */
+class GuestBookControllerTest {
+
+	/**
+	 * Test method for {@link com.bt.guestbook.controller.GuestBookController#getAllBooks(org.springframework.ui.Model)}.
+	 */
+	@Test
+	void testGetAllBooks() {
+		fail("Not yet implemented");
+	}
+
+	/**
+	 * Test method for {@link com.bt.guestbook.controller.GuestBookController#getBookById(java.lang.Long, org.springframework.ui.Model)}.
+	 */
+	@Test
+	void testGetBookById() {
+		fail("Not yet implemented");
+	}
+
+	/**
+	 * Test method for {@link com.bt.guestbook.controller.GuestBookController#deleteBook(java.lang.Long, org.springframework.ui.Model)}.
+	 */
+	@Test
+	void testDeleteBook() {
+		fail("Not yet implemented");
+	}
+
+	/**
+	 * Test method for {@link com.bt.guestbook.controller.GuestBookController#updateBook(com.bt.guestbook.model.GuestBook, org.springframework.ui.Model)}.
+	 */
+	@Test
+	void testUpdateBook() {
+		fail("Not yet implemented");
+	}
+
+	/**
+	 * Test method for {@link com.bt.guestbook.controller.GuestBookController#getBook(org.springframework.ui.Model)}.
+	 */
+	@Test
+	void testGetBook() {
+		fail("Not yet implemented");
+	}
+
+	/**
+	 * Test method for {@link com.bt.guestbook.controller.GuestBookController#addBook(com.bt.guestbook.model.GuestBook, org.springframework.ui.Model)}.
+	 */
+	@Test
+	void testAddBook() {
+		fail("Not yet implemented");
+	}
+
+	/**
+	 * Test method for {@link com.bt.guestbook.controller.GuestBookController#getImage(java.lang.Long, javax.servlet.http.HttpServletResponse)}.
+	 */
+	@Test
+	void testGetImage() {
+		fail("Not yet implemented");
+	}
+
+}

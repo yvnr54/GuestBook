@@ -1,0 +1,93 @@
+/**
+ * 
+ */
+package com.bt.guestbook.controller;
+
+import static org.junit.jupiter.api.Assertions.fail;
+import static org.mockito.Mockito.when;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.powermock.modules.junit4.PowerMockRunner;
+
+import com.bt.guestbook.model.GuestBook;
+import com.bt.guestbook.repository.GuestBookRepository;
+
+/**
+ * @author Venkat
+ *
+ */
+@RunWith(PowerMockRunner.class)
+class GuestBookControllerTest {
+
+	@Mock
+	GuestBookRepository guestBookRepository;
+	
+	@InjectMocks
+	GuestBookController guestBookController;
+	
+	@Mock
+	List<GuestBook> guestBook = new ArrayList();
+	
+	/**
+	 * Test method for {@link com.bt.guestbook.controller.GuestBookController#getAllBooks(org.springframework.ui.Model)}.
+	 */
+	@Test
+	void testGetAllBooks() {
+		when(guestBookRepository.findAll()).thenReturn();
+	}
+
+	/**
+	 * Test method for {@link com.bt.guestbook.controller.GuestBookController#getBookById(java.lang.Long, org.springframework.ui.Model)}.
+	 */
+	@Test
+	void testGetBookById() {
+		fail("Not yet implemented");
+	}
+
+	/**
+	 * Test method for {@link com.bt.guestbook.controller.GuestBookController#deleteBook(java.lang.Long, org.springframework.ui.Model)}.
+	 */
+	@Test
+	void testDeleteBook() {
+		fail("Not yet implemented");
+	}
+
+	/**
+	 * Test method for {@link com.bt.guestbook.controller.GuestBookController#updateBook(com.bt.guestbook.model.GuestBook, org.springframework.ui.Model)}.
+	 */
+	@Test
+	void testUpdateBook() {
+		fail("Not yet implemented");
+	}
+
+	/**
+	 * Test method for {@link com.bt.guestbook.controller.GuestBookController#getBook(org.springframework.ui.Model)}.
+	 */
+	@Test
+	void testGetBook() {
+		fail("Not yet implemented");
+	}
+
+	/**
+	 * Test method for {@link com.bt.guestbook.controller.GuestBookController#addBook(com.bt.guestbook.model.GuestBook, org.springframework.ui.Model)}.
+	 */
+	@Test
+	void testAddBook() {
+		fail("Not yet implemented");
+	}
+
+	/**
+	 * Test method for {@link com.bt.guestbook.controller.GuestBookController#getImage(java.lang.Long, javax.servlet.http.HttpServletResponse)}.
+	 */
+	@Test
+	void testGetImage() {
+		fail("Not yet implemented");
+	}
+
+}

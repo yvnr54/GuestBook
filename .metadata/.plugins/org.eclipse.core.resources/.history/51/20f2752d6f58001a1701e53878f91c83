@@ -1,0 +1,30 @@
+/**
+ * 
+ */
+package com.bt.guestbook.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.bt.guestbook.repository.GuestBookRepository;
+
+/**
+ * @author Venkat
+ *
+ */
+@Controller
+@RequestMapping("/guestBook")
+public class GuestBookController {
+
+	@Autowired
+	private GuestBookRepository guestBookRepository;
+	
+	@GetMapping("/all")
+	public String getAllBooks(Model model) {
+		model.addAttribute("bookList", guestBookRepository.findAll());
+		return "books";
+	}
+}

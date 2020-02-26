@@ -1,0 +1,12 @@
+/**
+ * 
+ */
+package com.bt.guestbook.repository;
+
+/**
+ * @author Venkat
+ *
+ */
+public interface BtUserRepository {
+
+}
