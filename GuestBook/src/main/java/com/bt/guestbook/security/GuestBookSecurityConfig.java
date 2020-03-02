@@ -3,33 +3,53 @@
  */
 package com.bt.guestbook.security;
 
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 /**
+ * This class provides Security to the application.
+ * it is accessing the datasource and connecting to it and performing the securtity operations.
+ * 
  * @author Venkat
  *
  */
 @Configuration
-@EnableWebSecurity      // Enables security for our application.
+@EnableWebSecurity      
 public class GuestBookSecurityConfig extends WebSecurityConfigurerAdapter {
- 
-    // Securing the urls and allowing role-based access to these urls.
+	
+	@Autowired
+    DataSource dataSource;
+
+    /**
+     * Securing the urls and allowing role-based access to these urls.
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.httpBasic().and().authorizeRequests()
         .antMatchers("/admin/**").hasRole("ADMIN")
-        .antMatchers("/*").hasRole("USER")
+        .antMatchers("/*").hasRole("USER") 
+        .and().formLogin().loginPage("/login")
+		.and().logout().permitAll()
         .and().csrf().disable();
     }
- 
-    // In-memory authentication to authenticate the user i.e. the user credentials are stored in the memory.
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication().withUser("guest").password("{noop}guest1234").roles("USER");
-        auth.inMemoryAuthentication().withUser("admin").password("{noop}admin1234").roles("ADMIN");
+    @Autowired
+    public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
+        auth.jdbcAuthentication().dataSource(dataSource);
     }
+
+	@Override
+	public void configure(WebSecurity web) throws Exception {
+		web.ignoring().antMatchers("/resources/**");
+	}
+
+   
+    
+    
 }

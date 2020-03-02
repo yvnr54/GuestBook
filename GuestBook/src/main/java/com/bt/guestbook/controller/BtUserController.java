@@ -3,17 +3,29 @@
  */
 package com.bt.guestbook.controller;
 
+import java.util.Optional;
+import java.util.Random;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.bt.guestbook.model.BtUser;
 import com.bt.guestbook.repository.BtUserRepository;
 
 /**
  * @author Venkat
- *
+ * 
+ * This class is used for perform the CRUD operaions for the User.
+ * The Normal Users are created, updated and deleted only the User who has Admin rights.
  */
 @Controller
 @RequestMapping(path = "/user")
@@ -21,8 +33,133 @@ public class BtUserController {
 
     private static final Logger logger = LoggerFactory.getLogger(BtUserController.class);
 
+    /**
+     *  The below Repository is implemented JPA Repository and which will be used to perform CRUD operations.
+     */
 	@Autowired
 	private BtUserRepository btUserRepository;
 	
-	// Need to add CRUD operations for USER
+	
+	/**
+	 * 
+	 * Getting all users data, this is accessible by the users who have admin rights. 
+	 * @return
+	 */
+	@GetMapping("/admin/all")
+	public String getUsers(Model model) {
+		logger.info("Getting all Users Data");
+		model.addAttribute("userList", btUserRepository.findAll());
+		return "users";
+	}
+	
+	/**
+	 * 
+	 * Getting user object for create the user, this is accessible by the users who have admin rights. 
+	 * @return
+	 */
+	@GetMapping("/admin/add")
+	public String getUser(Model model) {
+		logger.info("Getting User Object for create user");
+		model.addAttribute("user", new BtUser());
+		return "createUser";
+	}
+	
+
+	/**
+	 * 
+	 * Saving users data, this is accessible by the users who have admin rights. 
+	 * @return
+	 */
+	@PostMapping("/admin/save")
+	public String saveUser(@ModelAttribute("user") BtUser user, Model model) {
+		logger.info("Saving the User Object");
+		user.setUserName(generateUserName());
+		user.setPassword(generatePassword());
+		btUserRepository.save(user);
+		model.addAttribute("successMsg", "User created Successfully.");
+		return "redirect:/user/admin/all";
+	}
+	
+
+	private String generatePassword() {
+	  
+	        // chose a Character random from this String 
+	        String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	                                    + "0123456789"
+	                                    + "abcdefghijklmnopqrstuvxyz"; 
+	  
+	        // create StringBuffer size of AlphaNumericString 
+	        StringBuilder sb = new StringBuilder(8); 
+	  
+	        for (int i = 0; i < 8; i++) { 
+	  
+	            // generate a random number between 
+	            // 0 to AlphaNumericString variable length 
+	            int index 
+	                = (int)(AlphaNumericString.length() 
+	                        * Math.random()); 
+	  
+	            // add Character one by one in end of sb 
+	            sb.append(AlphaNumericString 
+	                          .charAt(index)); 
+	        } 
+	  
+	        return sb.toString(); 
+	    } 
+
+	private String generateUserName() {
+		int leftLimit = 97; // letter 'a'
+	    int rightLimit = 122; // letter 'z'
+	    int targetStringLength = 10;
+	    Random random = new Random();
+	 
+	    String generatedString = random.ints(leftLimit, rightLimit + 1)
+	      .limit(targetStringLength)
+	      .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+	      .toString();
+	    return generatedString;
+	}
+
+	/**
+	 * 
+	 * Editing  users data, this is accessible by the users who have admin rights. 
+	 * @return
+	 */
+	@GetMapping("/admin/edit/{id}")
+	public String editUser(@PathVariable("id") Long id, Model model) {
+		Optional<BtUser> optional = btUserRepository.findById(id);
+		if(optional.isPresent())
+			model.addAttribute("user", optional.get());
+		else
+			model.addAttribute("errorMsg", "User Not Found with this id");
+		return "editUser";
+	}
+	
+
+	/**
+	 * 
+	 * Deleting users data, this is accessible by the users who have admin rights. 
+	 * @return
+	 */
+	
+	@GetMapping("/admin/delete/{id}")
+	public String deleteUser(@PathVariable("id") Long id,Model model) {
+		btUserRepository.deleteById(id);
+		model.addAttribute("successMsg", "User deleted Successfully");
+		return "redirect:/user/admin/all";
+	}
+	
+
+	/**
+	 * 
+	 * Updating all users data, this is accessible by the users who have admin rights. 
+	 * @return
+	 */
+	@PutMapping("/admin/update")
+	public String updateUser(@ModelAttribute("user") BtUser user, Model model) {
+		btUserRepository.save(user);
+		model.addAttribute("successMsg", "User Updated Successfully");
+		return "redirect:/user/admin/all";
+	}
+	
 }

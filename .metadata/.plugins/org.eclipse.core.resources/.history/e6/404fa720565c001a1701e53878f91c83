@@ -1,0 +1,67 @@
+/**
+ * 
+ */
+package com.bt.guestbook.controller;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.bt.guestbook.model.BtUser;
+import com.bt.guestbook.repository.BtUserRepository;
+
+/**
+ * @author Venkat
+ *
+ */
+@Controller
+@RequestMapping(path = "/user")
+public class BtUserController {
+
+    private static final Logger logger = LoggerFactory.getLogger(BtUserController.class);
+
+	@Autowired
+	private BtUserRepository btUserRepository;
+	
+	@GetMapping("/all")
+	public String getUsers(Model model) {
+		model.addAttribute("userList", btUserRepository.findAll());
+		return "users";
+	}
+	
+	@GetMapping("/add")
+	public String getUser(Model model) {
+		model.addAttribute("user", new BtUser());
+		return "createUser";
+	}
+	
+	@PostMapping("/save")
+	public String saveUser(@ModelAttribute("user") BtUser user, Model model) {
+		btUserRepository.save(user);
+		model.addAttribute("successMsg", "User created Successfully.");
+		return "redirect:/user/all";
+	}
+	
+	@GetMapping("/edit")
+	public String editUser(@PathVariable("id") Long id, Model model) {
+		Optional<BtUser> optional = btUserRepository.findById(id);
+		if(optional.isPresent())
+			model.addAttribute("user", optional.get());
+		else
+			model.addAttribute("errorMsg", "User Not Found with this id");
+		return "editUser";
+		
+	}
+	
+	
+}

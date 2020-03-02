@@ -5,6 +5,8 @@
 <item elementID="=GuestBook/src\/main\/resources" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=springboot-thymeleaf-crud-tutorial/src\/main\/java" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=springboot-thymeleaf-crud-tutorial/src\/main\/resources" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=boot-form-handling/src\/main\/java" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=boot-form-handling/src\/main\/resources" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSet>
 <workingSet editPageId="org.eclipse.jdt.internal.ui.DynamicSourcesWorkingSet" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1582699370271_1" label="Java Test Sources" name="Java Test Sources">
 <item elementID="=GuestBook/src\/test\/java" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>

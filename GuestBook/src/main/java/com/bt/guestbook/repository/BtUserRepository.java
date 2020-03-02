@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 import com.bt.guestbook.model.BtUser;
 
 /**
+ * This  is used to perform CRUD operations on BtUser entity and it extended super interface JPA Repository.
+ * 
  * @author Venkat
  *
  */

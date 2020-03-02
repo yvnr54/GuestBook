@@ -1,0 +1,40 @@
+package com.bt.guestbook.controller;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+
+@RunWith(PowerMockRunner.class)
+class BtUserControllerTest {
+
+	@Test
+	void testGetUsers() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testGetUser() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testSaveUser() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testEditUser() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testDeleteUser() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testUpdateUser() {
+		fail("Not yet implemented");
+	}
+
+}

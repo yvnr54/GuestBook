@@ -1,0 +1,57 @@
+package com.bt.guestbook.controller;
+
+import static org.junit.jupiter.api.Assertions.fail;
+
+import org.hibernate.service.spi.InjectService;
+import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.powermock.modules.junit4.PowerMockRunner;
+
+import com.bt.guestbook.model.BtUser;
+import com.bt.guestbook.repository.BtUserRepository;
+
+@RunWith(PowerMockRunner.class)
+class BtUserControllerTest {
+
+	@Mock
+	BtUser btUser;
+	
+	@Mock
+	BtUserRepository btUserRepository;
+	
+	@InjectMocks
+	BtUserController btUserController;
+	
+	@Test
+	void testGetUsers() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testGetUser() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testSaveUser() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testEditUser() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testDeleteUser() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testUpdateUser() {
+		fail("Not yet implemented");
+	}
+
+}

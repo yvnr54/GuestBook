@@ -1,0 +1,5 @@
+package com.bt.guestbook.controller;
+
+public class LoginController {
+
+}
